@@ -196,21 +196,37 @@ export const FormulaLab: React.FC<FormulaLabProps> = ({ items }) => {
                     >
                       <span className="text-xs text-blue-200 uppercase font-semibold">
                         {k === "elasticity"
-                          ? "가격탄력성(절댓값)"
+                          ? "가격탄력성 (절댓값)"
+                          : k === "crossElasticity"
+                          ? "교차탄력성 수치"
+                          : k === "relation"
+                          ? "두 재화의 관계"
+                          : k === "diff"
+                          ? "가치 격차 (성공 - 실패)"
+                          : k === "infoVal"
+                          ? "정보의 현재가치"
+                          : k === "ratio"
+                          ? "인구비 제곱근 (거리비)"
+                          : k === "distA"
+                          ? "A도시 기준 경계 거리"
+                          : k === "distB"
+                          ? "B도시 기준 경계 거리"
                           : k === "noi"
-                          ? "순영업소득(NOI)"
+                          ? "순영업소득 (NOI)"
                           : k === "egi"
-                          ? "유효총소득(EGI)"
+                          ? "유효총소득 (EGI)"
                           : k === "btcf"
-                          ? "세전현금흐름(BTCF)"
+                          ? "세전현금흐름 (BTCF)"
                           : k === "atcf"
-                          ? "세후현금흐름(ATCF)"
+                          ? "세후현금흐름 (ATCF)"
                           : k}
                       </span>
                       <span className="text-base font-bold text-emerald-300">
                         {typeof val === "number"
-                          ? k === "elasticity"
+                          ? k === "elasticity" || k === "crossElasticity" || k === "ratio"
                             ? val.toFixed(2)
+                            : k === "distA" || k === "distB"
+                            ? val.toFixed(2) + " km"
                             : val.toLocaleString() + " 원"
                           : String(val)}
                       </span>
