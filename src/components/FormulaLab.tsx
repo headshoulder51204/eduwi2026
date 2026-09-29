@@ -1,0 +1,260 @@
+"use client";
+
+import React, { useState, useMemo } from "react";
+import { StudyItem } from "@/types/study";
+import { KatexRenderer } from "./KatexRenderer";
+import { Calculator, Sparkles, BookOpen, CheckCircle, ArrowRight, RotateCcw } from "lucide-react";
+
+interface FormulaLabProps {
+  items: StudyItem[];
+}
+
+export const FormulaLab: React.FC<FormulaLabProps> = ({ items }) => {
+  const formulaItems = useMemo(
+    () => items.filter((item) => item.formula !== undefined),
+    [items]
+  );
+
+  const [selectedId, setSelectedId] = useState<string>(
+    formulaItems[0]?.id || ""
+  );
+
+  const currentItem = useMemo(
+    () => formulaItems.find((item) => item.id === selectedId) || formulaItems[0],
+    [formulaItems, selectedId]
+  );
+
+  // Variable values state
+  const [variableValues, setVariableValues] = useState<Record<string, number>>(
+    () => {
+      const initial: Record<string, number> = {};
+      currentItem?.formula?.variables.forEach((v) => {
+        initial[v.id] = v.defaultValue;
+      });
+      return initial;
+    }
+  );
+
+  // Reset variables when switching items
+  const handleSelectItem = (id: string) => {
+    setSelectedId(id);
+    const item = formulaItems.find((i) => i.id === id);
+    if (item?.formula) {
+      const nextVals: Record<string, number> = {};
+      item.formula.variables.forEach((v) => {
+        nextVals[v.id] = v.defaultValue;
+      });
+      setVariableValues(nextVals);
+    }
+  };
+
+  const handleInputChange = (id: string, val: string) => {
+    const num = parseFloat(val) || 0;
+    setVariableValues((prev) => ({ ...prev, [id]: num }));
+  };
+
+  const resetToDefault = () => {
+    if (currentItem?.formula) {
+      const resetVals: Record<string, number> = {};
+      currentItem.formula.variables.forEach((v) => {
+        resetVals[v.id] = v.defaultValue;
+      });
+      setVariableValues(resetVals);
+    }
+  };
+
+  // Safe calculation execution
+  const calculationResult = useMemo(() => {
+    if (!currentItem?.formula?.calculateScript) return null;
+    try {
+      const keys = Object.keys(variableValues);
+      const vals = Object.values(variableValues);
+      const fn = new Function(...keys, currentItem.formula.calculateScript);
+      return fn(...vals);
+    } catch (e) {
+      console.error("Calculation script error:", e);
+      return null;
+    }
+  }, [currentItem, variableValues]);
+
+  if (!currentItem || !currentItem.formula) {
+    return (
+      <div className="p-8 text-center bg-gray-50 rounded-2xl border border-dashed border-gray-300">
+        <Calculator className="w-12 h-12 text-gray-400 mx-auto mb-2" />
+        <p className="text-gray-600 font-medium">등록된 계산 공식이 없습니다.</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* Formula Selector Tabs */}
+      <div className="flex flex-wrap gap-2 pb-2 border-b border-gray-200">
+        {formulaItems.map((item) => (
+          <button
+            key={item.id}
+            onClick={() => handleSelectItem(item.id)}
+            className={`px-4 py-2 text-sm font-semibold rounded-xl transition-all duration-200 flex items-center gap-2 ${
+              item.id === currentItem.id
+                ? "bg-blue-600 text-white shadow-md shadow-blue-500/20 scale-[1.02]"
+                : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-200"
+            }`}
+          >
+            <Calculator className="w-4 h-4" />
+            {item.title}
+          </button>
+        ))}
+      </div>
+
+      {/* Main Calculation Card */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        {/* Left: Formula Spec & Dynamic Inputs */}
+        <div className="lg:col-span-7 bg-white rounded-2xl p-6 border border-gray-200 shadow-sm space-y-6">
+          <div className="flex items-center justify-between">
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200">
+              {currentItem.subjectName} · {currentItem.chapter}
+            </span>
+            <button
+              onClick={resetToDefault}
+              className="text-xs text-gray-500 hover:text-blue-600 flex items-center gap-1 transition-colors"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              기본값 복원
+            </button>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-bold text-gray-900 mb-1">{currentItem.title}</h3>
+            <p className="text-sm text-gray-600">{currentItem.summary}</p>
+          </div>
+
+          {/* Formula Latex Display */}
+          <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl">
+            <div className="text-xs font-medium text-slate-500 mb-1 flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+              표준 시험 공식 (LaTeX)
+            </div>
+            <div className="text-center py-2">
+              <KatexRenderer latex={currentItem.formula.latex} block />
+            </div>
+            <p className="text-xs text-slate-600 mt-2 border-t border-slate-200 pt-2">
+              💡 {currentItem.formula.description}
+            </p>
+          </div>
+
+          {/* Interactive Input Form */}
+          <div className="space-y-4">
+            <h4 className="text-sm font-bold text-gray-800 flex items-center gap-1.5">
+              <Calculator className="w-4 h-4 text-blue-600" />
+              수치 변수 입력 (실시간 계산)
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {currentItem.formula.variables.map((v) => (
+                <div key={v.id} className="space-y-1.5">
+                  <label className="text-xs font-semibold text-gray-700 block">
+                    {v.name}
+                  </label>
+                  <div className="relative rounded-lg shadow-sm">
+                    <input
+                      type="number"
+                      value={variableValues[v.id] ?? 0}
+                      onChange={(e) => handleInputChange(v.id, e.target.value)}
+                      className="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white pr-10 font-mono transition-all"
+                    />
+                    {v.unit && (
+                      <span className="absolute right-3 top-2 text-xs text-gray-400 font-medium pointer-events-none">
+                        {v.unit}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Right: Real-time Output & Mnemonic Tip */}
+        <div className="lg:col-span-5 space-y-6">
+          {/* Calculation Output Card */}
+          <div className="bg-gradient-to-br from-blue-900 to-indigo-950 text-white rounded-2xl p-6 shadow-xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
+              <Calculator className="w-32 h-32" />
+            </div>
+
+            <div className="relative z-10 space-y-4">
+              <div className="flex items-center gap-2 text-blue-200 text-xs font-semibold uppercase tracking-wider">
+                <CheckCircle className="w-4 h-4 text-emerald-400" />
+                실시간 산출 결과
+              </div>
+
+              {calculationResult ? (
+                <div className="space-y-3 font-mono">
+                  {Object.entries(calculationResult).map(([k, val]) => (
+                    <div
+                      key={k}
+                      className="flex items-center justify-between p-3 bg-white/10 rounded-xl backdrop-blur-sm border border-white/10"
+                    >
+                      <span className="text-xs text-blue-200 uppercase font-semibold">
+                        {k === "elasticity"
+                          ? "가격탄력성(절댓값)"
+                          : k === "noi"
+                          ? "순영업소득(NOI)"
+                          : k === "egi"
+                          ? "유효총소득(EGI)"
+                          : k === "btcf"
+                          ? "세전현금흐름(BTCF)"
+                          : k === "atcf"
+                          ? "세후현금흐름(ATCF)"
+                          : k}
+                      </span>
+                      <span className="text-base font-bold text-emerald-300">
+                        {typeof val === "number"
+                          ? k === "elasticity"
+                            ? val.toFixed(2)
+                            : val.toLocaleString() + " 원"
+                          : String(val)}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-sm text-blue-200">변수를 입력하면 계산 결과가 표시됩니다.</p>
+              )}
+
+              {currentItem.mnemonic && (
+                <div className="pt-4 border-t border-white/10">
+                  <div className="text-xs font-bold text-amber-300 flex items-center gap-1.5 mb-1">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    시험장 3초 암기팁 (두문자)
+                  </div>
+                  <div className="p-3 bg-amber-500/10 border border-amber-400/20 rounded-xl text-xs text-amber-100 font-medium whitespace-pre-line leading-relaxed">
+                    <strong className="text-amber-300 text-sm block mb-1">
+                      {currentItem.mnemonic.phrase}
+                    </strong>
+                    {currentItem.mnemonic.details}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Quick Quiz Card */}
+          {currentItem.quizzes.length > 0 && (
+            <div className="bg-white rounded-2xl p-5 border border-gray-200 shadow-sm space-y-3">
+              <div className="flex items-center gap-2 text-xs font-bold text-gray-700">
+                <BookOpen className="w-4 h-4 text-blue-600" />
+                이 공식과 연계된 단골 기출 지문
+              </div>
+              <div className="p-3.5 bg-gray-50 rounded-xl text-xs text-gray-800 leading-relaxed border border-gray-200">
+                {currentItem.quizzes[0].question}
+              </div>
+              <p className="text-[11px] text-gray-500">
+                👉 상단 [스피드 퀴즈 모드]에서 전체 문제를 풀어볼 수 있습니다.
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};

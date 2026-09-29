@@ -1,0 +1,90 @@
+[
+  {
+    "id": "intro-001",
+    "subjectId": "intro",
+    "subjectName": "부동산학개론",
+    "chapter": "부동산투자론",
+    "type": "formula",
+    "title": "영업현금흐름(순영영세세) 계산 체계",
+    "tags": ["계산문제", "투자론", "빈출", "단골출제"],
+    "summary": "부동산 임대 사업 시 매각 전 운영 단계에서 발생하는 단계별 수지 계산 체계입니다. 영업경비에 포함되는 항목(재산세, 화재보험료, 관리비)과 포함되지 않는 항목(감가상각비, 부채서비스액, 소득세)의 구분이 핵심 함정 지문입니다.",
+    "mnemonic": {
+      "phrase": "가-공-기=유 / 유-영=순 / 순-부=세전 / 세전-영=세후",
+      "details": "1. 가능총소득 - 공실및불량채권 + 기타수입 = 유효총소득\n2. 유효총소득 - 영업경비 = 순영업소득(NOI)\n3. 순영업소득 - 부채서비스액 = 세전현금흐름(BTCF)\n4. 세전현금흐름 - 영업소득세 = 세후현금흐름(ATCF)"
+    },
+    "formula": {
+      "latex": "\\text{순영업소득(NOI)} = \\text{유효총소득(EGI)} - \\text{영업경비(OE)}",
+      "description": "유효총소득에서 영업경비를 차감하여 순영업소득을 산출합니다.",
+      "variables": [
+        { "id": "pgi", "name": "가능총소득 (PGI)", "unit": "원", "defaultValue": 100000000 },
+        { "id": "vacancy", "name": "공실 및 대손충당률", "unit": "%", "defaultValue": 10 },
+        { "id": "misc", "name": "기타수입 (자판기/주차비 등)", "unit": "원", "defaultValue": 0 },
+        { "id": "oe", "name": "영업경비 (OE)", "unit": "원", "defaultValue": 15000000 },
+        { "id": "debt", "name": "부채서비스액 (원리금상환액)", "unit": "원", "defaultValue": 20000000 },
+        { "id": "tax", "name": "영업소득세", "unit": "원", "defaultValue": 5000000 }
+      ],
+      "calculateScript": "const egi = pgi * (1 - vacancy / 100) + misc; const noi = egi - oe; const btcf = noi - debt; const atcf = btcf - tax; return { egi, noi, btcf, atcf };"
+    },
+    "quizzes": [
+      {
+        "id": "q-intro-001",
+        "type": "ox",
+        "question": "영업경비 산정 시 건물의 감가상각비와 개인 소득세, 부채서비스액은 영업경비 항목에 포함된다.",
+        "answer": false,
+        "explanation": "오답! 감가상각비, 부채서비스액(원리금상환액), 영업소득세는 영업경비에 포함되지 않습니다."
+      },
+      {
+        "id": "q-intro-002",
+        "type": "multiple_choice",
+        "question": "가능총소득 5,000만원, 공실률 10%, 영업경비 1,000만원, 부채서비스액 1,200만원일 때 순영업소득(NOI)과 세전현금흐름은 각각 얼마인가?",
+        "options": [
+          "순영업소득 3,500만원 / 세전현금흐름 2,300만원",
+          "순영업소득 3,500만원 / 세전현금흐름 2,000만원",
+          "순영업소득 4,000만원 / 세전현금흐름 2,800만원",
+          "순영업소득 3,200만원 / 세전현금흐름 2,000만원",
+          "순영업소득 4,500만원 / 세전현금흐름 3,300만원"
+        ],
+        "answerIndex": 0,
+        "explanation": "유효총소득 = 5,000만 - 500만(10%) = 4,500만원.\n순영업소득 = 4,500만 - 1,000만 = 3,500만원.\n세전현금흐름 = 3,500만 - 1,200만 = 2,300만원."
+      }
+    ],
+    "createdAt": "2026-09-29T21:00:00Z",
+    "updatedAt": "2026-09-29T21:00:00Z"
+  },
+  {
+    "id": "intro-002",
+    "subjectId": "intro",
+    "subjectName": "부동산학개론",
+    "chapter": "부동산경제론",
+    "type": "formula",
+    "title": "수요의 가격탄력성 계산식",
+    "tags": ["계산문제", "경제론", "탄력성"],
+    "summary": "가격 변동 비율에 대한 수요량의 변동 비율의 절댓값입니다. 탄력적(>1)일 때는 임대료를 인하해야 총수입이 증가하고, 비탄력적(<1)일 때는 임대료를 인상해야 총수입이 증가합니다.",
+    "mnemonic": {
+      "phrase": "비-고 / 탄-저 (비탄력적이면 고가전략, 탄력적이면 저가전략 유리)",
+      "details": "비탄력적일 때 가격 올리면 수입 증가, 탄력적일 때 가격 내리면 수입 증가."
+    },
+    "formula": {
+      "latex": "\\epsilon_d = - \\frac{\\% \\Delta Q_d}{\\% \\Delta P} = \\left| \\frac{\\Delta Q / Q_0}{\\Delta P / P_0} \\right|",
+      "description": "수요량 변동률(%) / 가격 변동률(%)의 절댓값입니다.",
+      "variables": [
+        { "id": "p0", "name": "기존 가격 (P0)", "unit": "원", "defaultValue": 1000 },
+        { "id": "p1", "name": "변동 가격 (P1)", "unit": "원", "defaultValue": 1100 },
+        { "id": "q0", "name": "기존 수요량 (Q0)", "unit": "개", "defaultValue": 100 },
+        { "id": "q1", "name": "변동 수요량 (Q1)", "unit": "개", "defaultValue": 85 }
+      ],
+      "calculateScript": "const deltaP = p1 - p0; const deltaQ = q1 - q0; const pPct = (deltaP / p0) * 100; const qPct = (deltaQ / q0) * 100; const elasticity = Math.abs(qPct / pPct); return { deltaP, deltaQ, pPct, qPct, elasticity };"
+    },
+    "quizzes": [
+      {
+        "id": "q-intro-003",
+        "type": "ox",
+        "question": "부동산 수요가 가격에 대해 비탄력적인 경우, 임대업자가 임대료를 인상하면 전체 임대료 수입은 감소한다.",
+        "answer": false,
+        "explanation": "오답! 비탄력적인 경우 가격 상승률보다 수요량 감소율이 더 적으므로, 임대료를 올릴수록 총수입이 증가합니다."
+      }
+    ],
+    "createdAt": "2026-09-29T21:00:00Z",
+    "updatedAt": "2026-09-29T21:00:00Z"
+  }
+]
