@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "skills": {
+    "oma-academic-writing": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-academic-writing/SKILL.md",
+      "computedHash": "f6c6bd27351fd7060b124b383f97c07dfdf90154ea74ec5aec11c533ea3b00fe"
+    },
+    "oma-architecture": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-architecture/SKILL.md",
+      "computedHash": "69cf875b11fce709159e8922d9b6ae6c2a40e356c43812bddde25c18f9bc6b19"
+    },
+    "oma-backend": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-backend/SKILL.md",
+      "computedHash": "af38585e91ad5a4c61d9f36a1530944ff623f7390a523f567e89cdedec8a05d9"
+    },
+    "oma-brainstorm": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-brainstorm/SKILL.md",
+      "computedHash": "9f96a1c54e5ce3082e29febb99c27431fbccac8f22897bb6cd865bd97cad6bd6"
+    },
+    "oma-coordination": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-coordination/SKILL.md",
+      "computedHash": "e62075fbdce0eb827f688533149b039baf1854c1c9d8f61a09fd27b7788654d6"
+    },
+    "oma-db": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-db/SKILL.md",
+      "computedHash": "7cc3718b9810845b86918815bc492456794e66f98c523e35ff79864a15c99776"
+    },
+    "oma-debug": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-debug/SKILL.md",
+      "computedHash": "886a3bbd27a374a64d06cef3e6bda393b4f834191fbc2d56bbdecd3ba0e56366"
+    },
+    "oma-deepsec": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-deepsec/SKILL.md",
+      "computedHash": "e3a3fbebd47be1894ed3927a0e35016546e1eb1e1b36d256cdaf6c5fa8b75205"
+    },
+    "oma-design": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-design/SKILL.md",
+      "computedHash": "c246873a10bcd416ec3a5f223623f4dc2d90f9c24ac9de69be2ca0e97f449f2f"
+    },
+    "oma-dev-workflow": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-dev-workflow/SKILL.md",
+      "computedHash": "7d66544415b7308335a7bf86cbb156933ae419e2074ebb25e15a39b24689a027"
+    },
+    "oma-docs": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-docs/SKILL.md",
+      "computedHash": "f7ae0e82ac6074b7c682cca19627f526dfd7c544ace75d717fdce0d702f4e5d0"
+    },
+    "oma-explanation": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-explanation/SKILL.md",
+      "computedHash": "30ab413a0bb2f2568f2cc7c75a1bb6fef6b1529d48ade22c5566f7b23b6d4963"
+    },
+    "oma-frontend": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-frontend/SKILL.md",
+      "computedHash": "028d7c34d499772548117b8ef5640acb8fcb090d1a2268065fd776fce5102530"
+    },
+    "oma-hwp": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-hwp/SKILL.md",
+      "computedHash": "82382397d6a0aaf600b9151211fe2bf007c7796df0f654087fffccceee4f6e5d"
+    },
+    "oma-image": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-image/SKILL.md",
+      "computedHash": "dcea943e6ab03619effce7df539de77da57d440fc1609f9659666a139c969a36"
+    },
+    "oma-market": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-market/SKILL.md",
+      "computedHash": "fba1729c5092aa367ab49b8b8111d677f867ad049449e1e5efa85a11b7d3af3d"
+    },
+    "oma-mobile": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-mobile/SKILL.md",
+      "computedHash": "2cd38ebb53c9759f9a554fdb2eecd7e9d3f249510bac4ef9a1eef0f6aad3d505"
+    },
+    "oma-observability": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-observability/SKILL.md",
+      "computedHash": "e45af4a65bd8ab9ace7b9c2b09b8b2453c36894bb9f280fa9aa64079fe9c21ab"
+    },
+    "oma-orchestration": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-orchestration/SKILL.md",
+      "computedHash": "d74669a7da205eef164658651b672999a11c184b87830eaa038fbf755e29afc6"
+    },
+    "oma-pdf": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-pdf/SKILL.md",
+      "computedHash": "62f7bce07ef7a13a9e7b05793723f4641ec41698b4fcb03483eb02d747254e27"
+    },
+    "oma-pm": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-pm/SKILL.md",
+      "computedHash": "ae415fdca8062708ac96fb5d5dc70591fd44f2bc2a86fc599fc586fe4c7f868d"
+    },
+    "oma-qa": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-qa/SKILL.md",
+      "computedHash": "8ce85c0f96504f397edc927262c644ecbee3918bccc5545ec445ea6e1eee6efb"
+    },
+    "oma-recap": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-recap/SKILL.md",
+      "computedHash": "08482621a21fc7f56ad5b63519929de23d7cb45911d7320aef4ba779e5cd679a"
+    },
+    "oma-refactor": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-refactor/SKILL.md",
+      "computedHash": "64bff031934eccb244b963e030b23560a9e49c78588be6b57f6ce81d397dcec2"
+    },
+    "oma-scholar": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-scholar/SKILL.md",
+      "computedHash": "454c945df5bae698f20633b80f94a23bfa4e4207c13c930cffed30bff195ac48"
+    },
+    "oma-scm": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-scm/SKILL.md",
+      "computedHash": "7a99dd7fba8f5d8458acaf50945137418a72247ade6b96e1eb1729c0779b0f2a"
+    },
+    "oma-search": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-search/SKILL.md",
+      "computedHash": "327ae27a5ee3063915a3205c58a359622ddcef0c61de9df75d2c396f221e3fec"
+    },
+    "oma-skill-creation": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-skill-creation/SKILL.md",
+      "computedHash": "e715f9b69370c1cbe53840b709fa6e625efa3d406929773980b41d9ad891a1b6"
+    },
+    "oma-slide": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-slide/SKILL.md",
+      "computedHash": "61351c124c5d24e01aeccc4725dae4770efe6271bf47cb048688500160246988"
+    },
+    "oma-tf-infra": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-tf-infra/SKILL.md",
+      "computedHash": "164dd410008768a06d70c92261823e57d73e2e4fd1e6b54f0ea33a54927abc40"
+    },
+    "oma-translation": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-translation/SKILL.md",
+      "computedHash": "c55e5d5a6231316924e118b352dcd3f2023573597be125fc33d6c6e413edb554"
+    },
+    "oma-video": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-video/SKILL.md",
+      "computedHash": "62cf4de645af203a7228bf69abcdcf71b87952914ad0f922e53cb1c33ffba164"
+    },
+    "oma-voice": {
+      "source": "first-fluke/oh-my-agent",
+      "sourceType": "github",
+      "skillPath": "skills/oma-voice/SKILL.md",
+      "computedHash": "54d4e932dfebd7a8f0f924e016456532864840d63487da00b349928d4159d20d"
+    }
+  }
+}
