@@ -397,5 +397,93 @@
     ],
     "createdAt": "2026-09-29T23:30:00Z",
     "updatedAt": "2026-09-29T23:30:00Z"
+  },
+  {
+    "id": "intro-012",
+    "subjectId": "intro",
+    "subjectName": "부동산학개론",
+    "chapter": "부동산투자론",
+    "type": "formula",
+    "title": "자기자본수익률(지분수익률) 및 레버리지 계산식",
+    "tags": ["계산문제", "투자론", "자기자본수익률", "지렛대효과", "빈출100%"],
+    "summary": "분모에는 내 돈(자기자본 = 총투자액 - 차입금), 분자에는 내 몫의 순수익(순영업소득 - 이자비용 + 부동산 가격변동액)을 넣어 산출합니다. 출제율 1위 함정은 '부동산 가격상승분'을 자기자본이 아닌 '총투자액'에 곱해야 한다는 점입니다.",
+    "mnemonic": {
+      "phrase": "지분수익률 = (순영업소득 - 이자 + 가격상승분) ÷ 자기자본",
+      "details": "• 분모(내 돈): 총투자액 - 대출금\n• 분자(내 몫): 순영업소득 - (대출금 × 이자율) + (총투자액 × 가격상승률)\n• 레버리지 판정: 자기수익률 > 종합수익률 > 이자율 ➔ 정(+)의 레버리지"
+    },
+    "formula": {
+      "latex": "\\text{자기자본수익률} = \\frac{\\text{순영업소득(NOI)} - \\text{이자비용} + \\text{가격변동액}}{\\text{자기자본(지분투자액)}} \\times 100",
+      "description": "총투자액에서 대출금을 뺀 자기자본 대비 세전 지분수익의 비율(%)을 계산합니다.",
+      "variables": [
+        { "id": "totalInvest", "name": "총투자액", "unit": "원", "defaultValue": 300000000 },
+        { "id": "loanAmount", "name": "차입금 (대출금)", "unit": "원", "defaultValue": 200000000 },
+        { "id": "interestRate", "name": "연 차입이자율", "unit": "%", "defaultValue": 6 },
+        { "id": "noi", "name": "연간 순영업소득 (NOI)", "unit": "원", "defaultValue": 20000000 },
+        { "id": "appreciationRate", "name": "연간 부동산 가격상승률", "unit": "%", "defaultValue": 2 }
+      ],
+      "calculateScript": "const equity = totalInvest - loanAmount; const interest = loanAmount * (interestRate / 100); const appreciation = totalInvest * (appreciationRate / 100); const netIncome = noi - interest + appreciation; const roe = (netIncome / equity) * 100; const overallReturn = ((noi + appreciation) / totalInvest) * 100; const leverageType = roe > overallReturn && overallReturn > interestRate ? '정(+)의 레버리지' : interestRate > overallReturn ? '부(-)의 레버리지' : '중립적 레버리지'; return { equity, interest, appreciation, netIncome, roe, overallReturn, leverageType };"
+    },
+    "quizzes": [
+      {
+        "id": "q-intro-021",
+        "type": "ox",
+        "question": "자기자본수익률 계산 시 1년간 발생한 부동산 가격상승액은 자기자본(지분투자액)에 가격상승률을 곱하여 산출한다.",
+        "answer": false,
+        "explanation": "오답! 부동산 가격 변동액은 자산 전체의 가치 상승이므로 내 돈(자기자본)이 아닌 '총투자액'에 가격상승률을 곱해야 합니다."
+      },
+      {
+        "id": "q-intro-022",
+        "type": "ox",
+        "question": "자기자본수익률이 총자본수익률(종합수익률)보다 높고, 총자본수익률이 차입이자율보다 높은 경우를 정(+)의 레버리지라고 한다.",
+        "answer": true,
+        "explanation": "정답! 차입이자율보다 더 높은 수익을 올려 자기자본수익률을 끌어올리는 효과를 정(+)의 지렛대 효과라고 합니다."
+      }
+    ],
+    "createdAt": "2026-10-03T00:15:00Z",
+    "updatedAt": "2026-10-03T00:15:00Z"
+  },
+  {
+    "id": "intro-013",
+    "subjectId": "intro",
+    "subjectName": "부동산학개론",
+    "chapter": "부동산투자론",
+    "type": "formula",
+    "title": "요구수익률(무·위·인)과 투자가치 계산식",
+    "tags": ["계산문제", "투자론", "요구수익률", "투자가치", "시장가치"],
+    "summary": "1. 요구수익률 = 무위험률 + 위험할증률 + 예상 인플레이션율 (피셔 효과)\n2. 투자가치 = 순영업소득(NOI) ÷ 요구수익률 (주관적 가치)\n3. 투자 채택 기준: 기대수익률 ≥ 요구수익률 ⟺ 투자가치 ≥ 시장가치\n4. 위험이 증가하면 요구수익률이 상승하여 분모가 커지므로 투자가치는 하락합니다.",
+    "mnemonic": {
+      "phrase": "요구수익률 = 무·위·인 / 기대 ≥ 요구 ⟺ 투자 ≥ 시장",
+      "details": "• 무·위·인: 무위험률(국채/예금금리) + 위험할증률(투자위험 대가) + 예상 인플레이션율\n• 투자가치 = 순영업소득 ÷ 요구수익률 (주관적 눈높이 가치)\n• 위험 커지면 ➔ 요구수익률 상승 ➔ 투자가치 하락(반비례)!"
+    },
+    "formula": {
+      "latex": "V_i = \\frac{\\text{NOI}}{\\text{무위험률} + \\text{위험할증률} + \\text{예상인플레이션율}}",
+      "description": "투자자의 요구수익률로 예상 순영업소득을 할인하여 대상 부동산의 주관적 투자가치를 산출합니다.",
+      "variables": [
+        { "id": "noi", "name": "연간 예상 순영업소득 (NOI)", "unit": "원", "defaultValue": 20000000 },
+        { "id": "rf", "name": "국채 금리 (무위험률)", "unit": "%", "defaultValue": 4 },
+        { "id": "rp", "name": "위험할증률", "unit": "%", "defaultValue": 4 },
+        { "id": "pi", "name": "예상 인플레이션율", "unit": "%", "defaultValue": 2 },
+        { "id": "marketPrice", "name": "현재 상가 시장가격 (시장가치)", "unit": "원", "defaultValue": 250000000 }
+      ],
+      "calculateScript": "const requiredReturn = rf + rp + pi; const investmentValue = noi / (requiredReturn / 100); const decision = investmentValue >= marketPrice ? '투자 채택 (매수 O)' : '투자 기각 (매수 X)'; return { requiredReturn, investmentValue, decision };"
+    },
+    "quizzes": [
+      {
+        "id": "q-intro-023",
+        "type": "ox",
+        "question": "투자 대상 부동산의 사업위험이나 금융위험이 커지면 투자자의 요구수익률이 상승하여 대상 부동산의 투자가치는 상승한다.",
+        "answer": false,
+        "explanation": "오답! 위험이 증가하면 요구수익률(분모)이 상승하므로, 장래 현금흐름의 현재가치인 '투자가치는 하락'합니다. (위험과 투자가치는 반비례 관계)"
+      },
+      {
+        "id": "q-intro-024",
+        "type": "ox",
+        "question": "부동산 투자 결정 시 특정 부동산의 기대수익률이 요구수익률보다 크다는 것은 해당 부동산의 투자가치가 시장가치보다 크다는 것을 의미한다.",
+        "answer": true,
+        "explanation": "정답! [기대수익률 > 요구수익률]과 [투자가치 > 시장가치]는 동전의 양면과 같이 완전히 동일한 투자 채택 조건입니다."
+      }
+    ],
+    "createdAt": "2026-10-03T00:15:00Z",
+    "updatedAt": "2026-10-03T00:15:00Z"
   }
 ]

@@ -66,3 +66,26 @@ flowchart TD
 4. **[Agent] 최종 리포트 회신:**
    - 오늘 추가된 개념, 계산식, 퀴즈 요약 전달
    - 실제 수험장 팁과 배포된 웹페이지 링크 안내
+
+---
+
+## 4. 자율 증분 업데이트 워크플로우 (Incremental Delta Ingestion)
+
+수험생이 지속적으로 업데이트된 마크다운 공부 노트 파일(예: `...정리 (1).md`, `...정리 (2).md`)을 제공할 때, 시스템은 다음과 같이 **증분(Delta)만 감지하여 반영**합니다.
+
+```mermaid
+flowchart LR
+    File["업데이트된 공부 노트\n(.md 파일 전달)"] --> Diff["증분 감지 엔진\n(scripts/ingest_incremental.py)"]
+    Diff -->|기존 항목 대조| Ledger[(".ingested_sources.json\n처리 이력 원장")]
+    Diff -->|신규 섹션만 분리| Delta["신규 증분 데이터\n(New Delta Only)"]
+    Delta --> Curator["edu_curator\n(과목 분류 / 수식 / 퀴즈화)"]
+    Curator --> JSON["과목별 JSON & daily_logs"]
+    JSON --> Build["Next.js 빌드 검증 & Git Push"]
+```
+
+1. **자동 중복 방지 (Title & Hash Matching):**
+   - 이미 데이터베이스에 등록된 개념이나 공식은 자동으로 스킵(Skipped) 처리되어 불필요한 중복 저장을 원천 차단합니다.
+2. **증분 원장 추적 (`data/.ingested_sources.json`):**
+   - 처리된 파일의 경로, 해시, 라인 수를 기록하여 신규 추가된 줄(Line)과 섹션만 선택적으로 파싱합니다.
+3. **무중단 Vercel 배포 연동:**
+   - 신규 증분만 반영된 직후 `validate_data.py`와 `npm run build` 스모크 테스트를 거쳐 안전하게 깃허브에 푸시되고 Vercel이 즉시 갱신 배포합니다.

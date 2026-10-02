@@ -12,6 +12,7 @@ echo "2. 프로덕션 빌드 및 검증 (Build & Smoke Test)"
 echo "3. 프로덕션 서버 실행 (Next.js Start)"
 echo "4. 파이썬 가상환경 의존성 설치 (pip install)"
 echo "5. 수험 데이터 유효성 검사 (Python Data Validator)"
+echo "6. 신규 공부 노트 증분 분석 (Incremental Delta Ingest)"
 echo "========================================================"
 
 read -p "실행할 메뉴 번호를 입력하세요 (기본값: 1): " choice
@@ -35,6 +36,10 @@ elif [ "$choice" = "5" ]; then
     echo "[INFO] 수험 데이터 무결성 검증을 수행합니다..."
     source venv/bin/activate
     python scripts/validate_data.py
+elif [ "$choice" = "6" ]; then
+    read -p "분석할 마크다운 파일 경로를 입력하세요: " notepath
+    source venv/bin/activate
+    python scripts/ingest_incremental.py "$notepath"
 else
     echo "[ERROR] 올바른 번호를 선택해주세요."
 fi

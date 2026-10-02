@@ -10,6 +10,7 @@ echo 2. 프로덕션 빌드 및 검증 (Build & Smoke Test)
 echo 3. 프로덕션 서버 실행 (Next.js Start)
 echo 4. 파이썬 가상환경 의존성 설치 (pip install)
 echo 5. 수험 데이터 유효성 검사 (Python Data Validator)
+echo 6. 신규 공부 노트 증분 분석 (Incremental Delta Ingest)
 echo ========================================================
 
 set /p choice="실행할 메뉴 번호를 입력하세요 (기본값: 1): "
@@ -30,6 +31,9 @@ if "%choice%"=="1" (
 ) else if "%choice%"=="5" (
     echo [INFO] 수험 데이터 무결성 검증을 수행합니다...
     call .\venv\Scripts\python.exe scripts\validate_data.py
+) else if "%choice%"=="6" (
+    set /p notepath="분석할 마크다운 파일 경로를 입력하세요: "
+    call .\venv\Scripts\python.exe scripts\ingest_incremental.py "%notepath%"
 ) else (
     echo [ERROR] 올바른 번호를 선택해주세요.
 )
