@@ -65,7 +65,7 @@ eduwill_2026/
 │   │   ├── 03_broker_law.json   # 공인중개사법령 (절대적등록취소 두문자)
 │   │   ├── 04_public_law.json   # 부동산공법 (건폐율 암기코드)
 │   │   ├── 05_disclosure.json   # 공시법 (지번 북서기번법)
-│   │   └── 06_tax_law.json      # 세법 (양도세 필요경비)
+│   │   └── 06_tax_law.json      # 세법 (양도세 필요경비, 조세분류 치트키 취등재·농부·보처소)
 │   └── daily_logs.json          # 날짜별 학습 타임라인
 ├── docs/
 │   └── AGENT_SYSTEM.md          # 에이전트 시스템 아키텍처 명세서

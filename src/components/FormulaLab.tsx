@@ -132,6 +132,21 @@ export const FormulaLab: React.FC<FormulaLabProps> = ({ items }) => {
         randomVals["marketPrice"] = marketPrice;
         break;
       }
+      case "intro-015": {
+        const loans = [50000000, 100000000, 200000000, 300000000];
+        const loan = loans[Math.floor(Math.random() * loans.length)];
+        const mcList = [0.075, 0.0872, 0.095, 0.102];
+        const mc = mcList[Math.floor(Math.random() * mcList.length)];
+        const funds = [50000000, 100000000, 200000000];
+        const fund = funds[Math.floor(Math.random() * funds.length)];
+        const sffList = [0.082, 0.1638, 0.250];
+        const sff = sffList[Math.floor(Math.random() * sffList.length)];
+        randomVals["loan"] = loan;
+        randomVals["mortgageConstant"] = mc;
+        randomVals["targetFund"] = fund;
+        randomVals["sinkingFundFactor"] = sff;
+        break;
+      }
       default: {
         currentItem.formula.variables.forEach((v) => {
           const factor = 0.8 + Math.random() * 0.4;
@@ -327,6 +342,10 @@ export const FormulaLab: React.FC<FormulaLabProps> = ({ items }) => {
                           ? "투자가치 (주관적 가치)"
                           : k === "decision"
                           ? "투자 채택/기각 결정"
+                          : k === "annualRepayment"
+                          ? "연간 원리금 균등상환액 (융자액 × 저당상수)"
+                          : k === "annualSaving"
+                          ? "매년 적립액 (목표목돈 × 감채기금계수)"
                           : k}
                       </span>
                       <span className="text-base font-bold text-emerald-300">
@@ -337,7 +356,7 @@ export const FormulaLab: React.FC<FormulaLabProps> = ({ items }) => {
                             ? val.toFixed(2) + " %"
                             : k === "distA" || k === "distB"
                             ? val.toFixed(2) + " km"
-                            : val.toLocaleString() + " 원"
+                            : Math.round(val).toLocaleString() + " 원"
                           : String(val)}
                       </span>
                     </div>
