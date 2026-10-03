@@ -11,7 +11,7 @@
       "source": "first-fluke/oh-my-agent",
       "sourceType": "github",
       "skillPath": "skills/oma-architecture/SKILL.md",
-      "computedHash": "69cf875b11fce709159e8922d9b6ae6c2a40e356c43812bddde25c18f9bc6b19"
+      "computedHash": "091b95f660e4f8258a8e33693c5b77da364cfce27ca58567e3a0941127e30afe"
     },
     "oma-backend": {
       "source": "first-fluke/oh-my-agent",
@@ -23,7 +23,7 @@
       "source": "first-fluke/oh-my-agent",
       "sourceType": "github",
       "skillPath": "skills/oma-brainstorm/SKILL.md",
-      "computedHash": "9f96a1c54e5ce3082e29febb99c27431fbccac8f22897bb6cd865bd97cad6bd6"
+      "computedHash": "7421eeae0d97884a9f0a6a41166738dd2cc55f4b1f76f52387c4e94b54f2bb1c"
     },
     "oma-coordination": {
       "source": "first-fluke/oh-my-agent",
@@ -41,13 +41,13 @@
       "source": "first-fluke/oh-my-agent",
       "sourceType": "github",
       "skillPath": "skills/oma-debug/SKILL.md",
-      "computedHash": "886a3bbd27a374a64d06cef3e6bda393b4f834191fbc2d56bbdecd3ba0e56366"
+      "computedHash": "67af4ab7f4377b4048185ac1a7095ecba20a10cbed9fc4606248049d802483e0"
     },
     "oma-deepsec": {
       "source": "first-fluke/oh-my-agent",
       "sourceType": "github",
       "skillPath": "skills/oma-deepsec/SKILL.md",
-      "computedHash": "e3a3fbebd47be1894ed3927a0e35016546e1eb1e1b36d256cdaf6c5fa8b75205"
+      "computedHash": "1dec5bcfd689c9482aecbff97daa64026afda4670b70afbcba6552fbeba36aa5"
     },
     "oma-design": {
       "source": "first-fluke/oh-my-agent",
@@ -65,7 +65,7 @@
       "source": "first-fluke/oh-my-agent",
       "sourceType": "github",
       "skillPath": "skills/oma-docs/SKILL.md",
-      "computedHash": "f7ae0e82ac6074b7c682cca19627f526dfd7c544ace75d717fdce0d702f4e5d0"
+      "computedHash": "266ea823f2cb80c233209f9b3d36c95236e19cbeac42f5f2562055ffb297c8d1"
     },
     "oma-explanation": {
       "source": "first-fluke/oh-my-agent",
@@ -89,7 +89,7 @@
       "source": "first-fluke/oh-my-agent",
       "sourceType": "github",
       "skillPath": "skills/oma-image/SKILL.md",
-      "computedHash": "dcea943e6ab03619effce7df539de77da57d440fc1609f9659666a139c969a36"
+      "computedHash": "93dfd65476f15c670d15577232d9999dc9d1021ff089e22b79650be2e6fb5b50"
     },
     "oma-market": {
       "source": "first-fluke/oh-my-agent",
@@ -113,7 +113,7 @@
       "source": "first-fluke/oh-my-agent",
       "sourceType": "github",
       "skillPath": "skills/oma-orchestration/SKILL.md",
-      "computedHash": "d74669a7da205eef164658651b672999a11c184b87830eaa038fbf755e29afc6"
+      "computedHash": "98b9ce139a488dd603824d6381974d4f812403d8ebae9bb485fb3de839240fee"
     },
     "oma-pdf": {
       "source": "first-fluke/oh-my-agent",
@@ -191,7 +191,7 @@
       "source": "first-fluke/oh-my-agent",
       "sourceType": "github",
       "skillPath": "skills/oma-video/SKILL.md",
-      "computedHash": "62cf4de645af203a7228bf69abcdcf71b87952914ad0f922e53cb1c33ffba164"
+      "computedHash": "c53c7192d37be1c738944c079dc0e9831d0497e8f9a239141221223645434351"
     },
     "oma-voice": {
       "source": "first-fluke/oh-my-agent",
