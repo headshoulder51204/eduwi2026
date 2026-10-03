@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from "react";
 import { StudyItem } from "@/types/study";
 import { KatexRenderer } from "./KatexRenderer";
-import { Calculator, Sparkles, BookOpen, CheckCircle, ArrowRight, RotateCcw } from "lucide-react";
+import { Calculator, Sparkles, BookOpen, CheckCircle, ArrowRight, RotateCcw, Dices } from "lucide-react";
 
 interface FormulaLabProps {
   items: StudyItem[];
@@ -63,6 +63,85 @@ export const FormulaLab: React.FC<FormulaLabProps> = ({ items }) => {
     }
   };
 
+  const randomizeVariables = () => {
+    if (!currentItem?.formula) return;
+    const randomVals: Record<string, number> = {};
+
+    switch (currentItem.id) {
+      case "intro-001": {
+        const pgiOptions = [50000000, 60000000, 80000000, 100000000, 120000000];
+        const pgi = pgiOptions[Math.floor(Math.random() * pgiOptions.length)];
+        const vacOptions = [5, 10, 15];
+        const vacancy = vacOptions[Math.floor(Math.random() * vacOptions.length)];
+        const oe = Math.floor((pgi * (0.1 + Math.random() * 0.15)) / 1000000) * 1000000;
+        const debt = Math.floor((pgi * (0.15 + Math.random() * 0.15)) / 1000000) * 1000000;
+        const tax = Math.floor((pgi * (0.03 + Math.random() * 0.04)) / 1000000) * 1000000;
+        randomVals["pgi"] = pgi;
+        randomVals["vacancy"] = vacancy;
+        randomVals["misc"] = 0;
+        randomVals["oe"] = oe;
+        randomVals["debt"] = debt;
+        randomVals["tax"] = tax;
+        break;
+      }
+      case "intro-005": {
+        const success = [800000000, 880000000, 990000000, 1100000000][Math.floor(Math.random() * 4)];
+        const fail = [550000000, 660000000, 770000000][Math.floor(Math.random() * 3)];
+        const prob = [30, 40, 50, 60][Math.floor(Math.random() * 4)];
+        const rate = [5, 8, 10][Math.floor(Math.random() * 3)];
+        randomVals["successVal"] = success;
+        randomVals["failVal"] = fail;
+        randomVals["failProb"] = prob;
+        randomVals["discountRate"] = rate;
+        break;
+      }
+      case "intro-009": {
+        const popA = 1000;
+        const multiplier = [4, 9, 16][Math.floor(Math.random() * 3)];
+        const popB = popA * multiplier;
+        const dist = (1 + Math.sqrt(multiplier)) * [3, 4, 5][Math.floor(Math.random() * 3)];
+        randomVals["popA"] = popA;
+        randomVals["popB"] = popB;
+        randomVals["totalDist"] = dist;
+        break;
+      }
+      case "intro-012": {
+        const total = [200000000, 300000000, 400000000, 500000000][Math.floor(Math.random() * 4)];
+        const loanRatio = [0.4, 0.5, 0.6, 0.7][Math.floor(Math.random() * 4)];
+        const loan = Math.floor(total * loanRatio);
+        const rate = [4, 5, 6, 7][Math.floor(Math.random() * 4)];
+        const noi = Math.floor((total * (0.06 + Math.random() * 0.03)) / 1000000) * 1000000;
+        const app = [0, 2, 3, 5][Math.floor(Math.random() * 4)];
+        randomVals["totalInvest"] = total;
+        randomVals["loanAmount"] = loan;
+        randomVals["interestRate"] = rate;
+        randomVals["noi"] = noi;
+        randomVals["appreciationRate"] = app;
+        break;
+      }
+      case "intro-013": {
+        const noi = [15000000, 20000000, 25000000][Math.floor(Math.random() * 3)];
+        const rf = [3, 4, 5][Math.floor(Math.random() * 3)];
+        const rp = [3, 4, 5][Math.floor(Math.random() * 3)];
+        const pi = [1, 2, 3][Math.floor(Math.random() * 3)];
+        const marketPrice = [200000000, 250000000, 300000000][Math.floor(Math.random() * 3)];
+        randomVals["noi"] = noi;
+        randomVals["rf"] = rf;
+        randomVals["rp"] = rp;
+        randomVals["pi"] = pi;
+        randomVals["marketPrice"] = marketPrice;
+        break;
+      }
+      default: {
+        currentItem.formula.variables.forEach((v) => {
+          const factor = 0.8 + Math.random() * 0.4;
+          randomVals[v.id] = Math.round(v.defaultValue * factor * 10) / 10;
+        });
+      }
+    }
+    setVariableValues(randomVals);
+  };
+
   // Safe calculation execution
   const calculationResult = useMemo(() => {
     if (!currentItem?.formula?.calculateScript) return null;
@@ -114,13 +193,22 @@ export const FormulaLab: React.FC<FormulaLabProps> = ({ items }) => {
             <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200">
               {currentItem.subjectName} · {currentItem.chapter}
             </span>
-            <button
-              onClick={resetToDefault}
-              className="text-xs text-gray-500 hover:text-blue-600 flex items-center gap-1 transition-colors"
-            >
-              <RotateCcw className="w-3.5 h-3.5" />
-              기본값 복원
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={randomizeVariables}
+                className="text-xs px-2.5 py-1.5 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 rounded-xl flex items-center gap-1 font-bold transition-all shadow-sm"
+              >
+                <Dices className="w-3.5 h-3.5 text-amber-600" />
+                🎲 시험장 변형 숫자 생성
+              </button>
+              <button
+                onClick={resetToDefault}
+                className="text-xs text-slate-500 hover:text-blue-600 flex items-center gap-1 transition-colors px-2 py-1.5 rounded-xl border border-slate-200 hover:bg-slate-50"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+                기본값
+              </button>
+            </div>
           </div>
 
           <div>
