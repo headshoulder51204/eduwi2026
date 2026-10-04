@@ -60,7 +60,7 @@ flowchart TD
 eduwill_2026/
 ├── data/
 │   ├── subjects/
-│   │   ├── 01_intro.json        # 부동산학개론 (계산식, 탄력성, 투자론)
+│   │   ├── 01_intro.json        # 부동산학개론 (계산식, 탄력성, 투자론, 금융론 상환방식·자금조달)
 │   │   ├── 02_civil_law.json    # 민법 및 민사특별법 (통정허위표시, 취득시효)
 │   │   ├── 03_broker_law.json   # 공인중개사법령 (절대적등록취소 두문자)
 │   │   ├── 04_public_law.json   # 부동산공법 (건폐율 암기코드)

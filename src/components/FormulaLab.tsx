@@ -147,6 +147,21 @@ export const FormulaLab: React.FC<FormulaLabProps> = ({ items }) => {
         randomVals["sinkingFundFactor"] = sff;
         break;
       }
+      case "intro-017": {
+        const loans = [100000000, 150000000, 200000000, 300000000];
+        const loan = loans[Math.floor(Math.random() * loans.length)];
+        const rates = [4, 5, 6, 7];
+        const rate = rates[Math.floor(Math.random() * rates.length)];
+        const periods = [10, 15, 20, 25];
+        const period = periods[Math.floor(Math.random() * periods.length)];
+        const mcList = [0.08024, 0.087, 0.0963, 0.13587];
+        const mc = mcList[Math.floor(Math.random() * mcList.length)];
+        randomVals["loan"] = loan;
+        randomVals["rate"] = rate;
+        randomVals["period"] = period;
+        randomVals["mortgageConstant"] = mc;
+        break;
+      }
       default: {
         currentItem.formula.variables.forEach((v) => {
           const factor = 0.8 + Math.random() * 0.4;
@@ -346,6 +361,20 @@ export const FormulaLab: React.FC<FormulaLabProps> = ({ items }) => {
                           ? "연간 원리금 균등상환액 (융자액 × 저당상수)"
                           : k === "annualSaving"
                           ? "매년 적립액 (목표목돈 × 감채기금계수)"
+                          : k === "camPayment1"
+                          ? "원금균등(CAM) 1회차 원리금상환액"
+                          : k === "camPayment2"
+                          ? "원금균등(CAM) 2회차 원리금상환액"
+                          : k === "interestDrop"
+                          ? "원금균등 매기 이자 감액분 (상환원금 × r)"
+                          : k === "cpmPayment"
+                          ? "원리금균등(CPM) 매기 원리금상환액 (고정)"
+                          : k === "cpmPrincipal1"
+                          ? "원리금균등(CPM) 1회차 상환 원금"
+                          : k === "cpmPrincipal2"
+                          ? "원리금균등(CPM) 2회차 상환 원금 (×(1+r))"
+                          : k === "diff1"
+                          ? "1회차 차액 (CAM 1회차 - CPM 1회차)"
                           : k}
                       </span>
                       <span className="text-base font-bold text-emerald-300">
