@@ -716,5 +716,103 @@
     ],
     "createdAt": "2026-10-04T23:45:00Z",
     "updatedAt": "2026-10-04T23:45:00Z"
+  },
+  {
+    "id": "intro-019",
+    "subjectId": "intro",
+    "subjectName": "부동산학개론",
+    "chapter": "부동산금융론",
+    "type": "mnemonic",
+    "title": "주택저당증권(MBS) 4대장 & MBB 핵심 치트키 (T=투자자, B=발행기관, 소발원투)",
+    "tags": ["금융론", "MBS", "MBB", "MPTS", "MPTB", "CMO", "콜방어", "빈출", "단골출제"],
+    "summary": "1. MBB(저당채권담보부채권): 'B=발행기관이 싹 다'. 저당채권 소유권, 원리금 수취권, 조기상환위험, 채무불이행위험을 모두 '발행기관'이 부담. 투자자 콜방어 인정(O), 초과담보 필수(O).\n2. MPTS: 'T=투자자가 싹 다'. 소유권, 수취권, 조기상환위험 모두 '투자자'가 부담하는 지분형 증권. 콜방어 불가(X), 초과담보 불필요.\n3. MPTB & CMO: '소·발·원·투' (소유권은 발행기관, 원리금수취권 및 위험은 투자자). CMO는 만기와 이자율을 다양화한 다계층 증권으로 장기 트랜치 콜방어 인정.",
+    "mnemonic": {
+      "phrase": "B는 발행기관(발)이 싹 다 / T는 투자자(투)가 싹 다 / MPTB·CMO는 '소·발·원·투'",
+      "details": "• MBB: 소유권(발), 수취권(발), 조기상환위험(발), 콜방어(O), 초과담보 필수(O)\n• MPTS: 소유권(투), 수취권(투), 조기상환위험(투), 지분형, 콜방어(X)\n• MPTB/CMO: 소유권=발행기관, 원리금수취권·조기상환위험=투자자 ('소발원투')\n• 지문 1초 컷: MBB에 주어가 투자자이거나 초과담보 불필요라고 나오면 100% 오답!"
+    },
+    "quizzes": [
+      {
+        "id": "q-intro-040",
+        "type": "ox",
+        "question": "MBB(저당채권담보부채권)는 시장 금리가 하락하여 차입자가 조기상환을 하더라도 투자자가 조기상환 위험을 부담하지 않는다.",
+        "answer": true,
+        "explanation": "정답! MBB의 모든 권리와 위험은 발행기관('B=발행기관')이 부담합니다. 차입자가 일찍 갚아도 발행기관이 알아서 처리하고 투자자에게는 약정된 이자를 지급하므로, 조기상환위험은 발행기관이 부담합니다."
+      },
+      {
+        "id": "q-intro-041",
+        "type": "ox",
+        "question": "MBB 발행기관은 투자자를 보호하기 위해 담보로 제공된 저당채권 총액보다 적은 금액의 MBB를 발행하는 초과담보(신용보강)를 제공해야 한다.",
+        "answer": true,
+        "explanation": "정답! MBB는 발행기관이 채무불이행 위험을 직접 지는 채권형 증권이므로, 투자자의 안전을 위해 담보가치가 발행액보다 큰 '초과담보'가 필수적입니다."
+      },
+      {
+        "id": "q-intro-042",
+        "type": "multiple_choice",
+        "question": "주택저당증권(MBS)의 권리 및 위험 귀속에 관한 설명 중 틀린 것은?",
+        "options": [
+          "MPTS는 저당채권의 소유권과 원리금 수취권을 모두 투자자가 보유한다.",
+          "MBB는 투자자에게 조기상환에 대응할 수 있는 콜방어(Call Protection)가 인정된다.",
+          "MPTB는 저당채권의 소유권은 투자자가 갖고, 원리금 수취권은 발행기관이 갖는다.",
+          "CMO는 하나의 저당채권 풀(Pool)을 기초로 만기와 이자율을 다양화한 다계층 증권이다.",
+          "MBB는 발행기관이 채무불이행 위험을 직접 부담한다."
+        ],
+        "answerIndex": 2,
+        "explanation": "오답! MPTB는 '소·발·원·투'입니다. 즉 저당채권의 소유권은 '발행기관'이 갖고, 원리금 수취권은 '투자자'가 갖습니다."
+      }
+    ],
+    "createdAt": "2026-10-05T00:20:00Z",
+    "updatedAt": "2026-10-05T00:20:00Z"
+  },
+  {
+    "id": "intro-020",
+    "subjectId": "intro",
+    "subjectName": "부동산학개론",
+    "chapter": "부동산금융론",
+    "type": "formula",
+    "title": "LTV & DTI 복합 규제하의 최대 및 추가 대출가능액 계산",
+    "tags": ["계산문제", "금융론", "LTV", "DTI", "대출한도", "저당상수", "빈출", "단골출제"],
+    "summary": "1. Step 1 (LTV 기준 한도): 주택가격 × LTV 비율\n2. Step 2 (DTI 기준 한도): (연소득 × DTI) ÷ 저당상수 (※ 반드시 저당상수로 나누어 원금으로 환산!)\n3. Step 3 (통합 한도): min(LTV 한도, DTI 한도)\n4. Step 4 (질문 확인): 최대 대출액(Step 3 값) vs 추가 대출액(Step 3 값 - 기존 대출금 잔액).",
+    "mnemonic": {
+      "phrase": "LTV 한도 구하고 / DTI는 저당상수로 나누고 / 작은 값(Min) 고른 후 / 추가면 기존 대출 차감!",
+      "details": "• 실수 방지 1순위: 연소득 × DTI는 1년 치 '원리금'이므로, 반드시 '저당상수로 나누어야' 대출원금 한도가 나옴!\n• 실수 방지 2순위: 문제 끝의 질문이 '최대 대출액'인지 '추가 대출액'인지 확인 (추가면 기존 대출액 빼기)"
+    },
+    "formula": {
+      "latex": "\\text{대출한도} = \\min\\left(\\text{주택가격} \\times \\text{LTV}, \\; \\frac{\\text{연소득} \\times \\text{DTI}}{\\text{저당상수}}\\right)",
+      "description": "주택가격, LTV, 연소득, DTI, 저당상수, 기존 대출잔액을 입력하면 LTV 한도, DTI 한도, 승인 대출한도, 추가 대출가능액을 1초 만에 산출합니다.",
+      "variables": [
+        { "id": "price", "name": "주택 시가 (주택가격)", "unit": "원", "defaultValue": 500000000 },
+        { "id": "ltv", "name": "담보인정비율 (LTV)", "unit": "%", "defaultValue": 60 },
+        { "id": "income", "name": "차입자 연간 소득", "unit": "원", "defaultValue": 60000000 },
+        { "id": "dti", "name": "총부채상환비율 (DTI)", "unit": "%", "defaultValue": 40 },
+        { "id": "mortgageConstant", "name": "연간 저당상수", "unit": "", "defaultValue": 0.1 },
+        { "id": "existingDebt", "name": "기존 주택담보대출 잔액", "unit": "원", "defaultValue": 100000000 }
+      ],
+      "calculateScript": "const ltvLimit = price * (ltv / 100); const dtiAnnualMax = income * (dti / 100); const dtiLimit = dtiAnnualMax / mortgageConstant; const maxLoan = Math.min(ltvLimit, dtiLimit); const additionalLoan = Math.max(0, maxLoan - existingDebt); return { ltvLimit, dtiLimit, maxLoan, additionalLoan };"
+    },
+    "quizzes": [
+      {
+        "id": "q-intro-043",
+        "type": "ox",
+        "question": "연소득 5,000만 원, DTI 40%, 저당상수 0.1일 때, DTI 규제에 따른 차입자의 대출가능 원금 한도는 2,000만 원이다.",
+        "answer": false,
+        "explanation": "오답! 5,000만 × 40% = 2,000만 원은 연간 상환 가능한 '원리금'입니다. 대출가능 원금을 구하려면 반드시 저당상수(0.1)로 나누어야 하므로, 2,000만 ÷ 0.1 = 2억 원이 맞습니다."
+      },
+      {
+        "id": "q-intro-044",
+        "type": "multiple_choice",
+        "question": "甲은 시가 5억 원의 아파트를 담보로 대출을 받고자 한다. LTV 60%, DTI 40%, 연소득 6,000만 원, 연간 저당상수 0.1, 기존 주택담보대출 잔액 1억 원일 때, 甲이 받을 수 있는 '추가 대출 가능금액'은?",
+        "options": [
+          "1억 4,000만 원",
+          "2억 4,000만 원",
+          "3억 원",
+          "2억 원",
+          "1억 원"
+        ],
+        "answerIndex": 0,
+        "explanation": "1. LTV 한도: 5억 × 60% = 3억 원\n2. DTI 한도: (6,000만 × 40%) ÷ 0.1 = 2억 4,000만 원\n3. 통합 한도: min(3억, 2.4억) = 2억 4,000만 원\n4. 추가 대출액: 2억 4,000만 - 1억(기존 대출) = 1억 4,000만 원."
+      }
+    ],
+    "createdAt": "2026-10-05T00:20:00Z",
+    "updatedAt": "2026-10-05T00:20:00Z"
   }
 ]

@@ -162,6 +162,27 @@ export const FormulaLab: React.FC<FormulaLabProps> = ({ items }) => {
         randomVals["mortgageConstant"] = mc;
         break;
       }
+      case "intro-020": {
+        const prices = [300000000, 400000000, 500000000, 600000000];
+        const price = prices[Math.floor(Math.random() * prices.length)];
+        const ltvs = [50, 60, 70];
+        const ltv = ltvs[Math.floor(Math.random() * ltvs.length)];
+        const incomes = [40000000, 50000000, 60000000, 70000000];
+        const income = incomes[Math.floor(Math.random() * incomes.length)];
+        const dtis = [30, 40, 50];
+        const dti = dtis[Math.floor(Math.random() * dtis.length)];
+        const mcs = [0.08, 0.1, 0.12];
+        const mc = mcs[Math.floor(Math.random() * mcs.length)];
+        const debts = [0, 50000000, 100000000];
+        const existingDebt = debts[Math.floor(Math.random() * debts.length)];
+        randomVals["price"] = price;
+        randomVals["ltv"] = ltv;
+        randomVals["income"] = income;
+        randomVals["dti"] = dti;
+        randomVals["mortgageConstant"] = mc;
+        randomVals["existingDebt"] = existingDebt;
+        break;
+      }
       default: {
         currentItem.formula.variables.forEach((v) => {
           const factor = 0.8 + Math.random() * 0.4;
@@ -375,6 +396,14 @@ export const FormulaLab: React.FC<FormulaLabProps> = ({ items }) => {
                           ? "원리금균등(CPM) 2회차 상환 원금 (×(1+r))"
                           : k === "diff1"
                           ? "1회차 차액 (CAM 1회차 - CPM 1회차)"
+                          : k === "ltvLimit"
+                          ? "LTV 기준 대출한도 (주택가격 × LTV)"
+                          : k === "dtiLimit"
+                          ? "DTI 기준 대출한도 (연허용원리금 ÷ 저당상수)"
+                          : k === "maxLoan"
+                          ? "통합 최대 대출가능액 (Min)"
+                          : k === "additionalLoan"
+                          ? "추가 대출가능액 (최대한도 - 기존대출)"
                           : k}
                       </span>
                       <span className="text-base font-bold text-emerald-300">
